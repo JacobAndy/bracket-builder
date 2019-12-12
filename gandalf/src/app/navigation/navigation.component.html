@@ -1,0 +1,28 @@
+<mat-sidenav-container class="sidenav-container">
+      <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <mat-toolbar>Bracket Builder</mat-toolbar>
+    <mat-nav-list>
+      <a fxLayoutAlign="space-around center" mat-list-item routerLink="/discover">
+        <mat-icon>search</mat-icon><span>Discover</span></a>
+      <a mat-list-item routerLink="/manage">
+        <mat-icon>assignment</mat-icon><span>Manage</span></a>
+      <!-- <a mat-list-item routerLink="/donate">Donate</a> -->
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+    <div id="content-container">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
